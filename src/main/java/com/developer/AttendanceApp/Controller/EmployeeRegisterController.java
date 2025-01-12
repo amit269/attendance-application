@@ -90,58 +90,6 @@ public class EmployeeRegisterController {
 
 
 
-    @GetMapping
-
-    // no need to create this will be use from the admin where admin can see all the employee detail
-    public ResponseEntity<?> getEmployee(){
-        List<Employee> employee = employeeService.getEmployee();
-        if(employee != null && !employee.isEmpty()){
-         return new ResponseEntity<>(employee,HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-    }
-//
-//
-//    @GetMapping("/id/{myId}")
-//    public ResponseEntity<Employee> getEmployeeById(@PathVariable long myId){
-//
-//        Optional<Employee> employeeById = employeeService.getEmployeeById(myId);
-//        if(employeeById.isPresent()){
-//            return new ResponseEntity<Employee>(employeeById.get(),HttpStatus.OK);
-//
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-//
-    @DeleteMapping("/id/{myId}")
-    public ResponseEntity<?>    deleteEmployeeByID(@PathVariable  long myId){
-        try {
-            employeeService.deleteEmployeeBYId(myId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-    }
-//
-//
-//
- @PutMapping("/id/{myId}")
- public ResponseEntity<?> updateEmployeeById(@PathVariable long myId, @RequestBody Employee updateEmployee){
-     Employee oldEmployee = employeeService.getEmployeeById(myId).orElse(null);
-     try {
-         if(oldEmployee != null){
-             oldEmployee.setEmail(updateEmployee.getEmail() != null && !updateEmployee.getEmail().equals("")?
-                     updateEmployee.getEmail(): oldEmployee.getEmail());
-             oldEmployee.setAddress(updateEmployee.getAddress() != null && !updateEmployee.getAddress().equals("")
-                     ?updateEmployee.getAddress():oldEmployee.getAddress());
-         }
-         employeeService.saveEmployee(oldEmployee);
-         return new ResponseEntity<>(oldEmployee,HttpStatus.OK);
-     }catch (Exception e){
-         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-     }
-
- }
+  
+    
 }
